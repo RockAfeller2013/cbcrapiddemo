@@ -59,11 +59,6 @@ flowchart TB
     KaliNet -. BLOCK .-> LAN
     CalderaNet -. BLOCK .-> LAN
 
-
-Notes:
-- Mermaid does not support free-floating text; use a node.
-- Use a dotted edge (`-.->`) to keep it visually separate.
-
 ```
 # Setup VMware Workstation with Debian VM
 
