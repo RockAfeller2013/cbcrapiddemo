@@ -12,6 +12,11 @@ Includeds;
 - Caldera Container
 - Kali Container (WIP) and Exploit
 - Container Firewall rules to block all traffic to local network and only allow access to Carbon Black Cloud IPs
+- Apache Guacamole (WIP)
+
+-     Limitations: Copy and Paste is diffcult to do, Docker isn't really suitable for User GUI access.
+
+[youtube demo link]
 
 # Network Diagram
 
@@ -36,10 +41,10 @@ flowchart TB
     Internet["Internet\n(Carbon Black Cloud)"]
     LAN["Local LAN\n(192.168.1.0/24)"]
 
-    User -->|HTTPS :9443| Portainer
-    User -->|HTTP :8888| Caldera
-    User -->|VNC via Guac| Guac
-    User -->|SSH :2222| Kali
+    User -->|HTTPS :9443| Portainer| admin / admin
+    User -->|HTTP :8888| Caldera | admin / admin
+    User -->|HTTPS :8443 Guacamole | guacadmin / guacadmin 
+    User -->|SSH :2222| Kali | admin / admin
 
     Win1 <-->|Agent comms| CalderaNet
     Win2 <-->|Agent comms| CalderaNet
