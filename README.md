@@ -46,7 +46,7 @@ flowchart TB
     User -->|HTTP 8888 admin admin| Caldera
     User -->|HTTPS 8443 guacadmin guacadmin| Guac
     User -->|SSH 2222 admin admin| Kali
-    User -->|HTTP 8007 docker admin| Windows 11
+    User -->|HTTP 8007 docker admin| Windows11
 
     Win1 -->|Agent comms| CalderaNet
     CalderaNet -->|Agent comms| Win1
