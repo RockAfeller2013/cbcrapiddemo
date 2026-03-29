@@ -41,10 +41,10 @@ flowchart TB
     Internet["Internet\n(Carbon Black Cloud)"]
     LAN["Local LAN\n(192.168.1.0/24)"]
 
-    User -->|HTTPS :9443| Portainer| admin,admin
-    User -->|HTTP :8888| Caldera | admin,admin
-    User -->|HTTPS :8443 Guacamole | guacadmin, guacadmin 
-    User -->|SSH :2222| Kali | admin, admin
+    User -->|HTTPS :9443 (admin/admin)| Portainer
+    User -->|HTTP :8888 (admin/admin)| Caldera
+    User -->|HTTPS :8443 (guacadmin/guacadmin)| Guac
+    User -->|SSH :2222 (admin/admin)| Kali
 
     Win1 <-->|Agent comms| CalderaNet
     Win2 <-->|Agent comms| CalderaNet
@@ -60,6 +60,7 @@ flowchart TB
     CalderaNet -. BLOCK .-> LAN
 
 ```
+
 # Setup VMware Workstation with Debian VM
 
 First, you need to setup a VM with Docker installed inside it, you can do this your self, this part isnt't documented here, I am using Proxmox as it is easier to use opensource and automatic script. You can also download VMware workstation and setup a Docker VM.
