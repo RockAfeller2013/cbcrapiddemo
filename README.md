@@ -188,32 +188,31 @@ docker system df
 
 ```
 
-
 ```mermaid
 flowchart TB
     User["User (Browser / SSH)"]
 
-    subgraph Host["Docker VM Host (192.168.1.37)"]
-        Portainer["Portainer\n:9443 / :9000"]
-        Guac["Apache Guacamole\n(VNC Gateway)"]
-        Caldera["Caldera Server\n:8888 / :7010-7012"]
-        Kali["Kali Container\nSSH :2222"]
+    subgraph Host["Docker VM Host 192.168.1.37"]
+        Portainer["Portainer\n9443 / 9000"]
+        Guac["Apache Guacamole\nVNC Gateway"]
+        Caldera["Caldera Server\n8888 / 7010-7012"]
+        Kali["Kali Container\nSSH 2222"]
         
-        subgraph Net["Docker Network: my-net2 (bridge)"]
+        subgraph Net["Docker Network my-net2 bridge"]
             Win1["Windows 11 #1\nCBC + SandCat"]
             Win2["Windows 11 #2\nCBC + SandCat"]
-            CalderaNet["caldera-server\nDNS: caldera-server.my-net2"]
+            CalderaNet["caldera-server\nDNS caldera-server.my-net2"]
             KaliNet["kali-rolling"]
         end
     end
 
-    Internet["Internet\n(Carbon Black Cloud)"]
-    LAN["Local LAN\n(192.168.1.0/24)"]
+    Internet["Internet\nCarbon Black Cloud"]
+    LAN["Local LAN\n192.168.1.0/24"]
 
-    User -->|HTTPS :9443 (admin/admin)| Portainer
-    User -->|HTTP :8888 (admin/admin)| Caldera
-    User -->|HTTPS :8443 (guacadmin/guacadmin)| Guac
-    User -->|SSH :2222 (admin/admin)| Kali
+    User -->|HTTPS 9443 admin admin| Portainer
+    User -->|HTTP 8888 admin admin| Caldera
+    User -->|HTTPS 8443 guacadmin guacadmin| Guac
+    User -->|SSH 2222 admin admin| Kali
 
     Win1 -->|Agent comms| CalderaNet
     CalderaNet -->|Agent comms| Win1
@@ -234,3 +233,4 @@ flowchart TB
     Win2 -. BLOCK .-> LAN
     KaliNet -. BLOCK .-> LAN
     CalderaNet -. BLOCK .-> LAN
+
