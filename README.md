@@ -1,9 +1,4 @@
 ```mermaid
-graph TD
-    A[User] --> B[GitHub Markdown]
-    B --> C[Mermaid Renderer]
-    C --> D[Visual Diagram]
-
 flowchart TB
     User["User (Browser / SSH)"]
 
@@ -24,23 +19,19 @@ flowchart TB
     Internet["Internet\n(Carbon Black Cloud)"]
     LAN["Local LAN\n(192.168.1.0/24)"]
 
-    %% User Access
     User -->|HTTPS :9443| Portainer
     User -->|HTTP :8888| Caldera
     User -->|VNC via Guac| Guac
     User -->|SSH :2222| Kali
 
-    %% Internal Docker Network
     Win1 <-->|Agent comms| CalderaNet
     Win2 <-->|Agent comms| CalderaNet
     KaliNet <-->|Red team ops| Win1
     KaliNet <-->|Red team ops| Win2
 
-    %% External Access
     Win1 -->|HTTPS 443| Internet
     Win2 -->|HTTPS 443| Internet
 
-    %% Firewall Rules
     Win1 -. BLOCK .-> LAN
     Win2 -. BLOCK .-> LAN
     KaliNet -. BLOCK .-> LAN
