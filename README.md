@@ -3,7 +3,7 @@
 
 This docker compose file sets up a Carbon Black Cloud demo evnruonment using,  2xWindows 11 with Carbon Black Sensor and Caldera Sensor automatically installed, Apache Gucamole configred to access the Windows conatiners via VNC, a Kali container, Portainer for container visability and Caldera as a container all on the same Docker host.
 
-This enables a rapid, automated, repeatable, and thorough demo to showcase lateral movement detection,etc in a secure contained environment and the full capabilities of Carbon Black Cloud. This is also realativley safe to as it blocks access to the inernet except CBC and your priviate LAB. But, if you dont know what you are doing, nothing is safe is it. Usually this is provided at SE VP level of a EDR Vendor. 
+This enables a rapid, automated, repeatable, and thorough demo to showcase lateral movement detection,etc in a secure contained environment and the full capabilities of Carbon Black Cloud. This is also realativley safe to as it blocks access to the inernet except CBC and your priviate LAB. But, if you dont know what you are doing, nothing is safe is it. 
 
 Includeds;
 
@@ -303,6 +303,8 @@ docker system prune -a
 docker system df
 
 ```
+
+&Usually this is provided at SE VP level of a EDR Vendor.&
 
 
 
