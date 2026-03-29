@@ -14,7 +14,7 @@ Includeds;
 - Container Firewall rules to block all traffic to local network and only allow access to Carbon Black Cloud IPs
 - Apache Guacamole (WIP)
 
--     Limitations: Copy and Paste is diffcult to do, Docker isn't really suitable for User GUI access.
+*Limitations: Copy and Paste is diffcult to do, Docker isn't really suitable for User GUI access.*
 
 [youtube demo link]
 
