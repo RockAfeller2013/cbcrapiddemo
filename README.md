@@ -205,10 +205,14 @@ docker compose version || apt install -y docker-compose-plugin
 
 ## Block these containers from access your internal network, I doint care if it reachouts to the internet, you can update the rules to be more restrective if you wish.
 
+You will need to update these to make it more secure, atm, I am not use this.
+
 - https://github.com/RockAfeller2013/proxmox_helperscripts/blob/main/docker/firewall.md
+- https://techdocs.broadcom.com/us/en/carbon-black/cloud/carbon-black-cloud-sensors/index/cbc-sensor-installation-guide-tile/GUID-8DD05446-4094-4019-AA0C-D2ED1CB15FC0-en/firewallconfig/prodsyd-firewall-configuration.html
 
 
-## Portainer
+## Install Portainer for visbility 
+
 ```
 docker volume create portainer_data
 
@@ -224,7 +228,7 @@ docker run -d \
 https://192.168.1.37:9443/#!/init/admin
 
 ```
-## Setu Container network called my-net2
+## Setup Container network called my-net2
 
 ```
 docker network create my-net2
@@ -232,13 +236,17 @@ docker network create my-net2
 docker run -it --network my-net2 ping web
 ```
 
-## OEM Folder
+## Windows Container OEM Folder
 
 - Create a OEM Folder and add the CBC Sensor and install.bat and update with your Sensor key and Windows Licensing if you wish. These files will be copied to the Windows machine automattaly and the install.bat will be excueted upon first boot of windows. 
-- /sensor/installer_vista_win7_win8-64-4.1.0.5463.msi
-- /install.bat - https://github.com/RockAfeller2013/proxmox_helperscripts/blob/main/docker/dockur/windows/oem/install.bat
+- /OEM/sensor/installer_vista_win7_win8-64-4.1.0.5463.msi
+- /OEM//install.bat - https://github.com/RockAfeller2013/proxmox_helperscripts/blob/main/docker/dockur/windows/oem/install.bat
 
-## Windows 11
+- install.bat
+```
+```
+
+## Setup Windows 11 as a container
 
 ```
 docker run -d   --network my-net2 --name windows7   -e "VERSION=11"   -p 8007:8006   --device=/dev/kvm   --device=/dev/net/tun   --cap-add NET_ADMIN   -v /root/oem:/oem  docker.io/dockurr/windows:latest
@@ -249,7 +257,7 @@ docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' win
 ```
 - Connect to windows7 via VNC http://192.168.1.37:8007
 
-## Caldera
+## Setup Caldera as a container
 
 ```
 git clone https://github.com/mitre/caldera.git --recursive 
@@ -282,7 +290,7 @@ Password: admin
 http://192.168.1.37:8888
 
 ```
-## Kali minmal headless 
+## Build Kali minmal headless 
 
 ```
 bash <(curl -fsSL https://raw.githubusercontent.com/RockAfeller2013/proxmox_helperscripts/main/docker/kali/kalidockerbuild.sh)
@@ -304,7 +312,6 @@ docker system df
 
 ```
 
-&Usually this is provided at SE VP level of a EDR Vendor.&
 
 
 
