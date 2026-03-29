@@ -68,6 +68,24 @@ flowchart TB
     CalderaNet -. BLOCK .-> LAN
 ```
 
+
+## Access Credentials
+
+| Service | URL | Credentials |
+|---|---|---|
+| Portainer | `https://192.168.1.37:9443` | `admin / admin` |
+| Caldera | `http://192.168.1.37:8888` | `admin / admin` |
+| Guacamole | `https://192.168.1.37:8443` | `guacadmin / guacadmin` |
+| Kali SSH | `ssh admin@192.168.1.37 -p 2222` | `admin / admin` |
+
+## Network Notes
+
+- All containers in `my-net2` bridge network are **blocked from accessing the local LAN** (`192.168.1.0/24`)
+- Windows VMs are allowed outbound **HTTPS (443)** to the internet for Carbon Black Cloud agent comms
+- Caldera agent comms are handled via internal DNS `caldera-server.my-net2`
+- Kali container conducts red team ops against both Windows VMs within the Docker network
+
+
     
 # Setup VMware Workstation with Debian VM
 
@@ -275,21 +293,3 @@ architecture-beta
     kalinet{group}:B --> T:lan
     calderanet{group}:B --> T:lan
 ```
-
-## Access Credentials
-
-| Service | URL | Credentials |
-|---|---|---|
-| Portainer | `https://192.168.1.37:9443` | `admin / admin` |
-| Caldera | `http://192.168.1.37:8888` | `admin / admin` |
-| Guacamole | `https://192.168.1.37:8443` | `guacadmin / guacadmin` |
-| Kali SSH | `ssh admin@192.168.1.37 -p 2222` | `admin / admin` |
-
-## Network Notes
-
-- All containers in `my-net2` bridge network are **blocked from accessing the local LAN** (`192.168.1.0/24`)
-- Windows VMs are allowed outbound **HTTPS (443)** to the internet for Carbon Black Cloud agent comms
-- Caldera agent comms are handled via internal DNS `caldera-server.my-net2`
-- Kali container conducts red team ops against both Windows VMs within the Docker network
-
-
