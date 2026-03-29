@@ -68,6 +68,10 @@ flowchart TB
     KaliNet -. BLOCK .-> LAN
     CalderaNet -. BLOCK .-> LAN
 ```
+
+# Lab Architecture
+
+
 ```mermaid
 architecture-beta
     group host(server)[Docker VM Host 192 168 1 37]
@@ -300,41 +304,5 @@ docker system df
 
 ```
 
-# Lab Architecture
 
-```mermaid
-architecture-beta
-    group host(server)[Docker VM Host 192.168.1.37]
-        group net(cloud)[Docker Network my-net2 bridge] in host
-            service win1(server)[Windows 11 No.1 - CBC + SandCat] in net
-            service win2(server)[Windows 11 No.2 - CBC + SandCat] in net
-            service calderanet(server)[caldera-server.my-net2] in net
-            service kalinet(server)[kali-rolling] in net
 
-        service portainer(server)[Portainer 9443/9000] in host
-        service guac(server)[Guacamole VNC Gateway 8443] in host
-        service caldera(server)[Caldera Server 8888/7010-7012] in host
-        service kali(server)[Kali Container SSH 2222] in host
-
-    service user(internet)[User - Browser / SSH]
-    service internet(cloud)[Internet - Carbon Black Cloud]
-    service lan(disk)[Local LAN 192.168.1.0/24]
-
-    user:R --> L:portainer{group}
-    user:R --> L:caldera{group}
-    user:R --> L:guac{group}
-    user:R --> L:kali{group}
-
-    win1:R <--> L:calderanet
-    win2:R <--> L:calderanet
-    kalinet:R <--> L:win1
-    kalinet:R <--> L:win2
-
-    win1{group}:T --> B:internet
-    win2{group}:T --> B:internet
-
-    win1{group}:B --> T:lan
-    win2{group}:B --> T:lan
-    kalinet{group}:B --> T:lan
-    calderanet{group}:B --> T:lan
-```
