@@ -46,6 +46,7 @@ flowchart TB
     User -->|HTTP 8888 admin admin| Caldera
     User -->|HTTPS 8443 guacadmin guacadmin| Guac
     User -->|SSH 2222 admin admin| Kali
+    User -->|HTTP 8007 docker admin| Windows 11
 
     Win1 -->|Agent comms| CalderaNet
     CalderaNet -->|Agent comms| Win1
@@ -117,6 +118,10 @@ architecture-beta
 | Caldera | `http://192.168.1.37:8888` | `admin / admin` |
 | Guacamole | `https://192.168.1.37:8443` | `guacadmin / guacadmin` |
 | Kali SSH | `ssh admin@192.168.1.37 -p 2222` | `admin / admin` |
+| Windows 11 | `[ssh admin@192.168.1.37 -p 2222](http://192.168.1.37:8007)` | `docker / admin` |
+
+
+
 
 ## Network Notes
 
