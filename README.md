@@ -20,6 +20,54 @@ Includeds;
 
 # Network Diagram
 
+
+```mermaid
+flowchart TB
+    User["User (Browser / SSH)"]
+
+    subgraph Host["Docker VM Host 192.168.1.37"]
+        Portainer["Portainer\n9443 / 9000"]
+        Guac["Apache Guacamole\nVNC Gateway"]
+        Caldera["Caldera Server\n8888 / 7010-7012"]
+        Kali["Kali Container\nSSH 2222"]
+        
+        subgraph Net["Docker Network my-net2 bridge"]
+            Win1["Windows 11 #1\nCBC + SandCat"]
+            Win2["Windows 11 #2\nCBC + SandCat"]
+            CalderaNet["caldera-server\nDNS caldera-server.my-net2"]
+            KaliNet["kali-rolling"]
+        end
+    end
+
+    Internet["Internet\nCarbon Black Cloud"]
+    LAN["Local LAN\n192.168.1.0/24"]
+
+    User -->|HTTPS 9443 admin admin| Portainer
+    User -->|HTTP 8888 admin admin| Caldera
+    User -->|HTTPS 8443 guacadmin guacadmin| Guac
+    User -->|SSH 2222 admin admin| Kali
+
+    Win1 -->|Agent comms| CalderaNet
+    CalderaNet -->|Agent comms| Win1
+
+    Win2 -->|Agent comms| CalderaNet
+    CalderaNet -->|Agent comms| Win2
+
+    KaliNet -->|Red team ops| Win1
+    Win1 -->|Red team ops| KaliNet
+
+    KaliNet -->|Red team ops| Win2
+    Win2 -->|Red team ops| KaliNet
+
+    Win1 -->|HTTPS 443| Internet
+    Win2 -->|HTTPS 443| Internet
+
+    Win1 -. BLOCK .-> LAN
+    Win2 -. BLOCK .-> LAN
+    KaliNet -. BLOCK .-> LAN
+    CalderaNet -. BLOCK .-> LAN
+```
+
 # Setup VMware Workstation with Debian VM
 
 First, you need to setup a VM with Docker installed inside it, you can do this your self, this part isnt't documented here, I am using Proxmox as it is easier to use opensource and automatic script. You can also download VMware workstation and setup a Docker VM.
@@ -188,50 +236,4 @@ docker system df
 
 ```
 
-```mermaid
-flowchart TB
-    User["User (Browser / SSH)"]
-
-    subgraph Host["Docker VM Host 192.168.1.37"]
-        Portainer["Portainer\n9443 / 9000"]
-        Guac["Apache Guacamole\nVNC Gateway"]
-        Caldera["Caldera Server\n8888 / 7010-7012"]
-        Kali["Kali Container\nSSH 2222"]
-        
-        subgraph Net["Docker Network my-net2 bridge"]
-            Win1["Windows 11 #1\nCBC + SandCat"]
-            Win2["Windows 11 #2\nCBC + SandCat"]
-            CalderaNet["caldera-server\nDNS caldera-server.my-net2"]
-            KaliNet["kali-rolling"]
-        end
-    end
-
-    Internet["Internet\nCarbon Black Cloud"]
-    LAN["Local LAN\n192.168.1.0/24"]
-
-    User -->|HTTPS 9443 admin admin| Portainer
-    User -->|HTTP 8888 admin admin| Caldera
-    User -->|HTTPS 8443 guacadmin guacadmin| Guac
-    User -->|SSH 2222 admin admin| Kali
-
-    Win1 -->|Agent comms| CalderaNet
-    CalderaNet -->|Agent comms| Win1
-
-    Win2 -->|Agent comms| CalderaNet
-    CalderaNet -->|Agent comms| Win2
-
-    KaliNet -->|Red team ops| Win1
-    Win1 -->|Red team ops| KaliNet
-
-    KaliNet -->|Red team ops| Win2
-    Win2 -->|Red team ops| KaliNet
-
-    Win1 -->|HTTPS 443| Internet
-    Win2 -->|HTTPS 443| Internet
-
-    Win1 -. BLOCK .-> LAN
-    Win2 -. BLOCK .-> LAN
-    KaliNet -. BLOCK .-> LAN
-    CalderaNet -. BLOCK .-> LAN
-```
 
