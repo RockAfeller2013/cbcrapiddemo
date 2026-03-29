@@ -67,7 +67,7 @@ flowchart TB
     KaliNet -. BLOCK .-> LAN
     CalderaNet -. BLOCK .-> LAN
 ```
-``mermaid
+```mermaid
 architecture-beta
     group host(server)[Docker VM Host 192 168 1 37]
         group net(cloud)[Docker Network mynet2 bridge] in host
