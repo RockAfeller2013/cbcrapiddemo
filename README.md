@@ -187,6 +187,8 @@ docker system prune -a
 docker system df
 
 ```
+
+
 ```mermaid
 flowchart TB
     User["User (Browser / SSH)"]
@@ -213,10 +215,17 @@ flowchart TB
     User -->|HTTPS :8443 (guacadmin/guacadmin)| Guac
     User -->|SSH :2222 (admin/admin)| Kali
 
-    Win1 <-->|Agent comms| CalderaNet
-    Win2 <-->|Agent comms| CalderaNet
-    KaliNet <-->|Red team ops| Win1
-    KaliNet <-->|Red team ops| Win2
+    Win1 -->|Agent comms| CalderaNet
+    CalderaNet -->|Agent comms| Win1
+
+    Win2 -->|Agent comms| CalderaNet
+    CalderaNet -->|Agent comms| Win2
+
+    KaliNet -->|Red team ops| Win1
+    Win1 -->|Red team ops| KaliNet
+
+    KaliNet -->|Red team ops| Win2
+    Win2 -->|Red team ops| KaliNet
 
     Win1 -->|HTTPS 443| Internet
     Win2 -->|HTTPS 443| Internet
@@ -225,5 +234,3 @@ flowchart TB
     Win2 -. BLOCK .-> LAN
     KaliNet -. BLOCK .-> LAN
     CalderaNet -. BLOCK .-> LAN
-
-
