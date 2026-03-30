@@ -237,26 +237,6 @@ docker network create my-net2
 docker run -it --network my-net2 ping web
 ```
 
-## Windows Container OEM Folder
-
-- Create a OEM Folder and add the CBC Sensor and install.bat and update with your Sensor key and Windows Licensing if you wish. These files will be copied to the Windows machine automattaly and the install.bat will be excueted upon first boot of windows. 
-- /OEM/sensor/installer_vista_win7_win8-64-4.1.0.5463.msi
-- /OEM//install.bat - https://github.com/RockAfeller2013/proxmox_helperscripts/blob/main/docker/dockur/windows/oem/install.bat
-
-- install.bat
-```
-```
-
-## Setup Windows 11 as a container
-
-```
-docker run -d   --network my-net2 --name windows7   -e "VERSION=11"   -p 8007:8006   --device=/dev/kvm   --device=/dev/net/tun   --cap-add NET_ADMIN   -v /root/oem:/oem  docker.io/dockurr/windows:latest
-docker logs -f --tail 50 windows7
-
-docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' windows7
-
-```
-- Connect to windows7 via VNC http://192.168.1.37:8007
 
 ## Setup Caldera as a container
 
@@ -291,6 +271,30 @@ Password: admin
 http://192.168.1.37:8888
 
 ```
+
+
+## Windows Container OEM Folder
+
+- Create a OEM Folder and add the CBC Sensor and install.bat and update with your Sensor key and Windows Licensing if you wish. These files will be copied to the Windows machine automattaly and the install.bat will be excueted upon first boot of windows. 
+- /OEM/sensor/installer_vista_win7_win8-64-4.1.0.5463.msi
+- /OEM//install.bat - https://github.com/RockAfeller2013/proxmox_helperscripts/blob/main/docker/dockur/windows/oem/install.bat
+
+- install.bat
+```
+```
+
+## Setup Windows 11 as a container
+
+```
+docker run -d   --network my-net2 --name windows7   -e "VERSION=11"   -p 8007:8006   --device=/dev/kvm   --device=/dev/net/tun   --cap-add NET_ADMIN   -v /root/oem:/oem  docker.io/dockurr/windows:latest
+docker logs -f --tail 50 windows7
+
+docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' windows7
+
+```
+- Connect to windows7 via VNC http://192.168.1.37:8007
+
+
 ## Build Kali minmal headless 
 
 ```
