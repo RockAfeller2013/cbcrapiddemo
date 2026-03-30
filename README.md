@@ -283,7 +283,7 @@ http://192.168.1.37:8888
 
 ### Caldera Sandcat
 
-- Take note of the way I am running I am running the Sandcat installer via the install.bat, you can update if you wish.
+- Take note of the way I am running the Sandcat installer via the install.bat, you can update if you wish.
 
 ```
 
