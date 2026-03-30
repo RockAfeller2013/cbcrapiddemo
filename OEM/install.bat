@@ -1,4 +1,5 @@
 @echo off
+# https://github.com/RockAfeller2013/cbcrapiddemo
 
 msiexec /q /i "C:\oem\data\sensor\installer_vista_win7_win8-64-4.1.0.5463.msi" /L* C:\oem\data\sensor\log.txt COMPANY_CODE=
 
