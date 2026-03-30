@@ -1,4 +1,4 @@
-# Carbon Black Cloud - Rapid Demo / Proof of Concept or Proof of Value
+# Carbon Black Cloud - Rapid Cyber Range / Demo / Proof of Concept or Proof of Value
 
 
 >This docker compose file sets up a Carbon Black Cloud demo evnruonment using,  2xWindows 11 with Carbon Black Sensor and Caldera Sensor automatically installed, Apache Gucamole configred to access the Windows conatiners via VNC, a Kali container, Portainer for container visability and Caldera as a container all on the same Docker host.
