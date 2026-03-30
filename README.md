@@ -198,6 +198,7 @@ username: root
 Password: root
 ```
 
+### Install Docker Compose, curl and python
 ```
 apt intall -y curl
 docker compose version || apt install -y docker-compose-plugin
