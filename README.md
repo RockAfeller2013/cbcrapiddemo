@@ -280,8 +280,6 @@ http://192.168.1.37:8888
 - /OEM//install.bat - https://github.com/RockAfeller2013/proxmox_helperscripts/blob/main/docker/dockur/windows/oem/install.bat
 
 - install.bat
-```
-```
 
 ## Setup Windows 11 as a container
 
