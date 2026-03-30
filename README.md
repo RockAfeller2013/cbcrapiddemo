@@ -300,6 +300,7 @@ ssh root@192.168.1.37 -p 2222
 # Destroy and clean up 
 
 ```
+docker rm -f $(docker ps -aq)
 docker rm -f windows7
 docker rm -f caldera-server
 docker rm -f kali-rolling && docker rmi -f kali-rolling-custom docker.io/kalilinux/kali-rolling && docker volume rm kali-data 
