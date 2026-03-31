@@ -122,7 +122,7 @@ architecture-beta
 | Caldera | `http://192.168.1.37:8888` | `admin / admin` |
 | Guacamole | `https://192.168.1.37:8443` | `guacadmin / guacadmin` |
 | Kali SSH | `ssh admin@192.168.1.37 -p 2222` | `root / kali` |
-| Windows 11 | `[ssh admin@192.168.1.37 -p 2222](http://192.168.1.37:8007)` | `docker / admin` |
+| Windows 11 | `http://192.168.1.37:8007` | `docker / admin` |
 
 
 
