@@ -333,6 +333,8 @@ docker image prune -a
 docker system prune -a
 docker system df
 
+docker ps -q | xargs -r docker stop && sleep 5 && systemctl stop docker && sleep 5 && shutdown now
+
 ```
 
 
