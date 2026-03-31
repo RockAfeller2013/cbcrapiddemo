@@ -121,7 +121,7 @@ architecture-beta
 | Portainer | `https://192.168.1.37:9443` | `admin / admin` |
 | Caldera | `http://192.168.1.37:8888` | `admin / admin` |
 | Guacamole | `https://192.168.1.37:8443` | `guacadmin / guacadmin` |
-| Kali SSH | `ssh admin@192.168.1.37 -p 2222` | `admin / admin` |
+| Kali SSH | `ssh admin@192.168.1.37 -p 2222` | `root / kali` |
 | Windows 11 | `[ssh admin@192.168.1.37 -p 2222](http://192.168.1.37:8007)` | `docker / admin` |
 
 
@@ -317,6 +317,12 @@ docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' win
 ```
 bash <(curl -fsSL https://raw.githubusercontent.com/RockAfeller2013/proxmox_helperscripts/main/docker/kali/kalidockerbuild.sh)
 ssh root@192.168.1.37 -p 2222
+
+username: root
+password: kali
+
+# Change password
+docker exec -it kali-rolling passwd root
 ```
 # Destroy and clean up 
 
