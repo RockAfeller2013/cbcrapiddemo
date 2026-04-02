@@ -14,11 +14,11 @@ export MSF_PASSWORD="your_msf_password"
 chmod +x install.sh && ./install.sh
 ```
 
-- Validates env vars first — API key and MSF password must exist before anything is written to disk (fixing the logic bug from your original)
+- Validates env vars first — API key and MSF password must exist before anything is written to disk 
 - Checks prerequisites — git, Node.js, npm, Python 3.10+
 - Installs uv — required by MetasploitMCP's toolchain
 - Installs Claude Code via npm if not already present
-- Writes Claude Code config with the corrected model string
+- Writes Claude Code config 
 - Clones or updates MetasploitMCP
 - Creates a isolated venv and installs Python dependencies (avoids the externally-managed-environment error seen on Kali/Debian)
 - Writes a .env with chmod 600 to protect MSF credentials
