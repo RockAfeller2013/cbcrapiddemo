@@ -37,4 +37,4 @@ chmod +x install.sh && ./install.sh
 | **API (pay-as-you-go)** | Usage-based | Unlimited (billed per token) | ✅ Yes | ✅ Yes | Script uses `CLAUDE_API_KEY` — most direct fit |
 | **Gemini CLI** | $0 | 1,000 req/day | ✅ Yes (Gemini) | ⚠️ Partial | MCP supported but MetasploitMCP untested against it |
 | **GitHub Copilot Free** | $0 | 2,000 completions/mo | ✅ Yes (Copilot) | ❌ No | No MCP support in free tier |
-| **Codex CLI** | $0 (open source) | API costs apply | ✅ Yes (GPT) | ✅ Yes | Confirmed STDIO MCP support — MetasploitMCP uses STDIO transport, so it should work |
+| **Codex CLI** | $0 CLI tool + API token costs | Unlimited (billed per token) | ✅ Yes (GPT) | ✅ Yes | `codex-mini-latest`: $1.50/M input, $6.00/M output. `GPT-5`: $1.25/M input, $10.00/M output. `GPT-5.1-Codex-Mini`: $0.25/M input, $2.00/M output. STDIO MCP confirmed ✅ |
